@@ -2,7 +2,7 @@
 
 Live deal scans publish direct eBay item links when credentials are configured.
 
-Scoutline is a focused UI prototype for an AI sports-card deal scanner. It presents a live-feed workflow, Card Ladder market-value comparisons, watchlist targets, and email/Discord delivery controls.
+Scoutline is a read-only AI sports-card deal scanner. It presents live eBay listing links, Card Ladder market-value comparisons, watchlist targets, and email/Discord delivery controls. It does not buy or sell cards; all transactions happen on eBay.
 
 ## Run locally
 
@@ -18,7 +18,7 @@ If the page says “Actual listing link appears after live scan,” the schedule
 
 ## Run while your laptop is off
 
-`monitor.js` is a remote-friendly scan worker. It searches fixed-price Buy It Now listings, which includes listings offering Best Offer, and excludes auctions. It writes the scored results to `deals.json` using eBay's actual `itemWebUrl` values and sends those same URLs to Discord. The included GitHub Actions workflow runs it every 15 minutes and can be triggered manually from the Actions tab. Add these repository secrets before enabling it:
+`monitor.js` is a remote-friendly, read-only scan worker. It searches fixed-price Buy It Now listings, which includes listings offering Best Offer, and excludes auctions. It writes the scored results to `deals.json` using eBay's actual `itemWebUrl` values and sends those same URLs to Discord. It never places bids, purchases cards, or creates listings. The included GitHub Actions workflow runs it every 15 minutes and can be triggered manually from the Actions tab. Add these repository secrets before enabling it:
 
 - `EBAY_BROWSE_TOKEN`: an eBay OAuth application token with Browse API access
 - `CARDLADDER_COMPS_URL`: an authorized Card Ladder adapter endpoint that accepts `player` and `listingTitle` and returns `{ "median": 123.45 }`
