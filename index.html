@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101a2b" />
+    <title>Scoutline | Sports card deal scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Scoutline home">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span>SCOUTLINE</span>
+        </a>
+        <div class="topbar-right">
+          <button class="deals-menu-button" id="dealsMenuButton" aria-expanded="false" aria-controls="dealsMenu"><span></span> DEALS <b>08</b></button>
+          <span class="status-dot"><i></i> <span id="monitorStatus">MONITORING EBAY</span></span>
+          <button class="icon-button" id="settingsButton" aria-label="Open settings" title="Settings">&#9881;</button>
+          <div class="avatar">KH</div>
+        </div>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="eyebrow">INTELLIGENCE FOR THE HUNT <span></span> 01</div>
+          <h1>Find the cards<br /><em>hiding in plain sight.</em></h1>
+          <p class="hero-copy">Scoutline watches eBay for mispriced Buy It Now and Best Offer cards, scores every listing against recent comps, and puts the best finds in your hands.</p>
+          <div class="hero-actions">
+            <button class="primary-button" id="scanButton"><span class="button-icon">&#9889;</span> Scan eBay now</button>
+            <span class="last-scan">Last scan <strong id="lastScan">Today, 9:42 AM</strong></span>
+          </div>
+        </section>
+
+        <section class="metrics" aria-label="Scanner metrics">
+          <div class="metric"><span>LISTINGS SCANNED</span><strong id="scannedCount">12,840</strong><small class="up">+18.4% <b>this week</b></small></div>
+          <div class="metric"><span>DEALS FOUND</span><strong id="dealsCount">47</strong><small class="up">+7 <b>since yesterday</b></small></div>
+          <div class="metric"><span>AVG. EDGE</span><strong>47.4%</strong><small class="neutral">across your watchlist</small></div>
+          <div class="metric"><span>ALERTS SENT</span><strong id="alertsCount">12</strong><small class="neutral">email + Discord</small></div>
+        </section>
+
+        <section class="criteria-panel" aria-labelledby="criteriaTitle">
+          <div class="criteria-heading"><div class="eyebrow">SEARCH CRITERIA <span></span> 02</div><h2 id="criteriaTitle">Build your next hunt</h2><p>Set the signals Scoutline should use when finding your cards.</p></div>
+          <form class="criteria-form" id="criteriaForm">
+            <label>Budget ceiling<span class="input-wrap"><span>$</span><input id="budgetInput" type="number" min="1" placeholder="Any price" /></span></label>
+            <label>Sport<select id="sportInput"><option value="">All sports</option><option value="basketball">Basketball</option><option value="baseball">Baseball</option><option value="football">Football</option></select></label>
+            <label>Player<input id="playerInput" type="search" placeholder="e.g. Kobe Bryant" /></label>
+            <label>Card product<input id="productInput" type="search" placeholder="e.g. Topps Chrome" /></label>
+            <div class="criteria-actions"><button class="apply-button" type="submit">Apply filters <span>&#8594;</span></button><button class="reset-button" id="resetCriteria" type="button">Reset</button></div>
+          </form>
+          <div class="active-criteria" id="activeCriteria" aria-live="polite"><span class="criteria-count">All cards</span><span>Watching your full market</span></div>
+        </section>
+
+        <div class="workspace-grid">
+          <section class="deals-panel">
+            <div class="section-heading">
+              <div><div class="eyebrow">LIVE FEED <span></span> 02</div><h2>Fresh opportunities</h2><p class="feed-note">Only verified eBay item links are shown. Preview cards below are not live listings.</p></div>
+              <div class="feed-controls"><span class="live-label"><i></i> LIVE</span><span class="source-label">VALUE BY <strong>CARD LADDER</strong></span><button class="filter-button" id="filterButton">All sports <span>&#8964;</span></button></div>
+            </div>
+            <div class="deal-list" id="dealList"></div>
+            <button class="load-button" id="loadButton">Load more opportunities <span>&#8594;</span></button>
+          </section>
+
+          <aside class="side-column">
+            <section class="watchlist-panel">
+              <div class="eyebrow">YOUR RADAR <span></span> 03</div>
+              <div class="watchlist-title"><h2>Watchlist</h2><button class="add-button" id="addButton" aria-label="Add watchlist item">+</button></div>
+              <div class="watch-item"><span class="sport-badge baseball">&#9670;</span><div><strong>Shohei Ohtani cards</strong><small>High upside · Under $300</small></div><b>−30%</b></div>
+              <div class="watch-item"><span class="sport-badge baseball">&#9670;</span><div><strong>Paul Skenes cards</strong><small>Chrome + Bowman · Under $200</small></div><b>−38%</b></div>
+              <div class="watch-item"><span class="sport-badge basketball">&#9673;</span><div><strong>Victor Wembanyama cards</strong><small>Silver + Courtside · Under $250</small></div><b>−30%</b></div>
+              <div class="watch-item"><span class="sport-badge football">&#9733;</span><div><strong>Cam Ward cards</strong><small>Any product · Under $100</small></div><b>−46%</b></div>
+              <button class="manage-button" id="manageButton">Manage watchlist <span>&#8594;</span></button>
+            </section>
+
+            <section class="delivery-panel">
+              <div class="eyebrow">DELIVERY <span></span> 04</div>
+              <h2>Alert channels</h2>
+              <div class="channel"><span class="channel-icon email">&#9993;</span><div><strong>Email alerts</strong><small>kai@heyatcollective.com</small></div><button class="toggle on" data-channel="email" aria-label="Toggle email alerts"><i></i></button></div>
+              <div class="channel"><span class="channel-icon discord">&#9679;</span><div><strong>Discord</strong><small>#card-alerts</small></div><button class="toggle on" data-channel="discord" aria-label="Toggle Discord alerts"><i></i></button></div>
+              <div class="delivery-note"><span>&#10003;</span> Only alerts with 20%+ estimated upside are sent.</div>
+            </section>
+          </aside>
+        </div>
+      </main>
+      <aside class="deals-menu" id="dealsMenu" aria-hidden="true">
+        <div class="deals-menu-header"><div><div class="eyebrow">OPPORTUNITIES <span></span> ALL</div><h2>Every deal</h2></div><button class="close-menu" id="closeDealsMenu" aria-label="Close deals menu">&#10005;</button></div>
+        <p class="menu-intro">Undervalued listings ranked by Card Ladder market value.</p>
+        <div class="menu-deal-list" id="menuDealList"></div>
+      </aside>
+      <footer><span>SCOUTLINE / CARD INTELLIGENCE</span><span>Data refreshes every 15 minutes <i></i></span></footer>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+name: Scoutline card monitor
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: scoutline-card-monitor
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Scan eBay and notify
+        run: node monitor.js
+        env:
+          EBAY_BROWSE_TOKEN: ${{ secrets.EBAY_BROWSE_TOKEN }}
+          CARDLADDER_COMPS_URL: ${{ secrets.CARDLADDER_COMPS_URL }}
+          CARDLADDER_TOKEN: ${{ secrets.CARDLADDER_TOKEN }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MINIMUM_UPSIDE: '0.20'
+      - name: Publish live deals feed
+        run: |
+          git config user.name 'scoutline-bot'
+          git config user.email 'scoutline-bot@users.noreply.github.com'
+          git add deals.json
+          git diff --cached --quiet || (git commit -m 'chore: refresh live card deals' && git push)
