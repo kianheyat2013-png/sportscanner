@@ -11,6 +11,8 @@
 .feed-note { margin:8px 0 0; color:var(--muted); font-size:10px; line-height:1.4; }
 .listing-facts { display:flex; flex-wrap:wrap; gap:5px 10px; margin-top:8px; color:var(--muted); font:9px 'DM Mono',monospace; line-height:1.4; }
 .listing-facts span:not(:last-child)::after { content:' /'; margin-left:10px; color:var(--line); }
+.empty-feed { display:flex; flex-direction:column; gap:8px; padding:28px 0; border-bottom:1px solid var(--line); color:var(--muted); font:10px 'DM Mono',monospace; }
+.empty-feed strong { color:var(--ink); font:600 13px 'Space Grotesk',sans-serif; }
 .best-deal { background:#fbfcf7; }.best-menu-deal { background:#fbfcf7; }.best-menu-deal .menu-deal-copy strong { color:var(--blue); }
 .criteria-panel { display:grid; grid-template-columns:minmax(210px,.75fr) 1.8fr; gap:5vw; padding:30px 0 27px; border-bottom:1px solid var(--ink); }
 .criteria-heading h2 { margin:10px 0 7px; font-size:22px; letter-spacing:-.04em; }.criteria-heading p { margin:0; color:var(--muted); font-size:11px; line-height:1.45; }
