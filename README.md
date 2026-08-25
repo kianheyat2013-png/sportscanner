@@ -1,5 +1,7 @@
 # Scoutline
 
+Live deal scans publish direct eBay item links when credentials are configured.
+
 Scoutline is a focused UI prototype for an AI sports-card deal scanner. It presents a live-feed workflow, Card Ladder market-value comparisons, watchlist targets, and email/Discord delivery controls.
 
 ## Run locally
