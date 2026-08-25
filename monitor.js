@@ -66,9 +66,13 @@ async function sendDiscord(deals) {
 }
 
 async function main() {
+  required('EBAY_BROWSE_TOKEN');
+  required('CARDLADDER_COMPS_URL');
+  required('CARDLADDER_TOKEN');
   const playerResults = await Promise.allSettled(players.map(getEbayListings));
   playerResults.filter((result) => result.status === 'rejected').forEach((result) => console.warn(result.reason.message));
   const listings = [...new Map(playerResults.filter((result) => result.status === 'fulfilled').flatMap((result) => result.value).map((listing) => [listing.itemId, listing])).values()];
+  if (!listings.length) throw new Error('No eBay listings were returned. Check EBAY_BROWSE_TOKEN and Browse API access.');
   const scored = (await Promise.all(listings.map(async (listing) => {
     try {
       const marketValue = await getCardLadderMedian(listing);

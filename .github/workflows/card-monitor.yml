@@ -34,6 +34,7 @@ jobs:
           MINIMUM_UPSIDE: '0.20'
       - name: Publish live deals feed
         run: |
+          test -s deals.json
           git config user.name 'scoutline-bot'
           git config user.email 'scoutline-bot@users.noreply.github.com'
           git add deals.json
