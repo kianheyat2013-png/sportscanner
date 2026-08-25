@@ -1,6 +1,11 @@
 name: Scoutline card monitor
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - monitor.js
+      - .github/workflows/card-monitor.yml
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:

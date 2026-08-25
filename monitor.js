@@ -27,7 +27,7 @@ async function getEbayListings(player) {
     ...item,
     itemId: item.itemId,
     title: item.title,
-    itemWebUrl: item.itemWebUrl,
+    itemWebUrl: item.itemWebUrl || (item.itemId ? `https://www.ebay.com/itm/${item.itemId}` : ''),
     price: Number(item.price?.value),
     currency: item.price?.currency || 'USD',
     player: player.name,
